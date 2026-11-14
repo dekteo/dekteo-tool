@@ -1,0 +1,37 @@
+# Explicit allowlist: personal artwork, profiles, chat exports and builds stay local.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/PROJECT_STATUS.md
+!/AGENTS.md
+!/.github/
+!/docs/
+!/scripts/
+!/tests/
+!/VeadotubeMy/
+
+**/bin/
+**/obj/
+**/.vs/
+**/node_modules/
+*.user
+*.suo
+*.log
+*.tmp
+.env*
+*.pfx
+*.pem
+*.key
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.psd
+*.zip
+*.exe
+*.dll
+*.json
+*.wav
+*.mp4
+*состояние проекта.md

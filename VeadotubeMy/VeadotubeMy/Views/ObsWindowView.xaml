@@ -1,0 +1,14 @@
+<UserControl x:Class="VeadotubeMy.Views.ObsWindowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="200" d:DesignWidth="400">
+
+    <StackPanel Margin="14">
+        <TextBlock Text="OBS и окно" Foreground="#06E2EB" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+        <TextBlock Text="Настройки окна захвата и интеграции с OBS появятся позже."
+                   Foreground="#DDDDDD" FontSize="12" TextWrapping="Wrap"/>
+    </StackPanel>
+</UserControl>

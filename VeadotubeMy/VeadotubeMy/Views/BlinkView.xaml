@@ -1,0 +1,40 @@
+<UserControl x:Class="VeadotubeMy.Views.BlinkView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="360" d:DesignWidth="400">
+
+    <StackPanel Margin="14">
+        <ToggleButton x:Name="TglBlink" Content="Включить моргание" FontSize="13"
+                      Margin="0,0,0,14"
+                      Checked="TglBlink_Checked" Unchecked="TglBlink_Unchecked"/>
+
+        <TextBlock Text="Минимальная задержка между морганиями" Foreground="#DDDDDD" FontSize="12" Margin="0,0,0,4"/>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+            <Slider x:Name="SldMin" Minimum="1" Maximum="20" Width="220" ValueChanged="SldMin_ValueChanged"/>
+            <TextBlock x:Name="TxtMin" Text="3 с" Foreground="#06E2EB" FontSize="12" FontWeight="Bold"
+                       Margin="12,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <TextBlock Text="Максимальная задержка между морганиями" Foreground="#DDDDDD" FontSize="12" Margin="0,0,0,4"/>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+            <Slider x:Name="SldMax" Minimum="1" Maximum="30" Width="220" ValueChanged="SldMax_ValueChanged"/>
+            <TextBlock x:Name="TxtMax" Text="8 с" Foreground="#06E2EB" FontSize="12" FontWeight="Bold"
+                       Margin="12,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <TextBlock Text="Длительность закрытия глаз" Foreground="#DDDDDD" FontSize="12" Margin="0,0,0,4"/>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+            <Slider x:Name="SldClose" Minimum="50" Maximum="1000" Width="220" ValueChanged="SldClose_ValueChanged"/>
+            <TextBlock x:Name="TxtClose" Text="150 мс" Foreground="#06E2EB" FontSize="12" FontWeight="Bold"
+                       Margin="12,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <TextBlock Text="Глаза моргают независимо от речи микрофона." Foreground="#BBBBBB" FontSize="12"
+                   TextWrapping="Wrap" Margin="0,0,0,14"/>
+
+        <Button x:Name="BtnTestBlink" Content="Проверить моргание" Width="170" Click="BtnTestBlink_Click"/>
+    </StackPanel>
+</UserControl>

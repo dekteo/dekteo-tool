@@ -1,0 +1,118 @@
+<UserControl x:Class="VeadotubeMy.Views.AvatarView"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <Grid Background="Transparent" ClipToBounds="True">
+  <Viewbox Stretch="Uniform" Margin="36" RenderTransformOrigin="0.5,0.5">
+   <Viewbox.RenderTransform><TransformGroup><ScaleTransform x:Name="PlacementScale"/><TranslateTransform x:Name="PlacementTranslation"/></TransformGroup></Viewbox.RenderTransform>
+   <Grid x:Name="Artwork" Width="1000" Height="1000" RenderTransformOrigin="0.5,0.65">
+    <Grid.RenderTransform><TransformGroup><RotateTransform x:Name="EffectRotation"/><TranslateTransform x:Name="EffectTranslation"/></TransformGroup></Grid.RenderTransform>
+    <Grid x:Name="LivingRig" RenderTransformOrigin="0.5,1">
+     <Grid.RenderTransform><TransformGroup><ScaleTransform x:Name="BreathScale"/><ScaleTransform x:Name="PoseScale"/><TranslateTransform x:Name="PoseTranslation"/></TransformGroup></Grid.RenderTransform>
+    <Image x:Name="BodyImage" Stretch="Uniform" IsHitTestVisible="False"/>
+    <Rectangle x:Name="BodyShade" Fill="Black" Opacity="0" IsHitTestVisible="False"><Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=BodyImage}" Stretch="Uniform"/></Rectangle.OpacityMask></Rectangle>
+    <Grid x:Name="HeadSurface">
+     <Grid.RenderTransform><TransformGroup><ScaleTransform x:Name="HeadScaleTransform"/><RotateTransform x:Name="HeadRotation"/><TranslateTransform x:Name="HeadTranslation"/><TranslateTransform x:Name="HeadPlacement"/></TransformGroup></Grid.RenderTransform>
+    <Grid x:Name="Composite">
+    <Grid x:Name="PreviousStateLayer" Opacity="0" IsHitTestVisible="False">
+     <Image x:Name="PreviousStateImage" Stretch="Uniform" RenderOptions.BitmapScalingMode="LowQuality"/>
+     <Rectangle x:Name="PreviousStateShade" Fill="Black" Opacity="0"><Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=PreviousStateImage}" Stretch="Uniform"/></Rectangle.OpacityMask></Rectangle>
+    </Grid>
+    <Grid x:Name="CurrentStateLayer">
+    <Image x:Name="StateImage" Stretch="Uniform" RenderOptions.BitmapScalingMode="LowQuality"/>
+    <Rectangle x:Name="DarkenOverlay" Fill="Black" Opacity="0" IsHitTestVisible="False">
+     <Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=StateImage}" Stretch="Uniform"/></Rectangle.OpacityMask>
+    </Rectangle>
+    </Grid>
+    <Canvas x:Name="PupilCanvas" IsHitTestVisible="False">
+     <Canvas x:Name="LeftEyeClip">
+      <Grid Width="{Binding Width, ElementName=LeftEyeClip}" Height="{Binding Height, ElementName=LeftEyeClip}">
+       <Image x:Name="LeftEyeWhite" Stretch="Fill"/>
+       <Rectangle x:Name="LeftWhiteShade" Fill="Black" Opacity="0"><Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=LeftEyeWhite}" Stretch="Fill"/></Rectangle.OpacityMask></Rectangle>
+      </Grid>
+     <Grid x:Name="LeftPupilSprite" RenderTransformOrigin="0.5,0.5">
+       <Grid.RenderTransform><TransformGroup><ScaleTransform x:Name="LeftPupilBlinkScale"/><TranslateTransform x:Name="LeftPupilOffset"/></TransformGroup></Grid.RenderTransform>
+       <Image x:Name="LeftPupilOverlay" Stretch="Uniform" RenderOptions.BitmapScalingMode="LowQuality"/>
+       <Rectangle x:Name="LeftPupilShade" Fill="Black" Opacity="0" IsHitTestVisible="False">
+        <Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=LeftPupilOverlay}" Stretch="Uniform"/></Rectangle.OpacityMask>
+       </Rectangle>
+      </Grid>
+     </Canvas>
+     <Canvas x:Name="RightEyeClip">
+      <Grid Width="{Binding Width, ElementName=RightEyeClip}" Height="{Binding Height, ElementName=RightEyeClip}">
+       <Image x:Name="RightEyeWhite" Stretch="Fill"/>
+       <Rectangle x:Name="RightWhiteShade" Fill="Black" Opacity="0"><Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=RightEyeWhite}" Stretch="Fill"/></Rectangle.OpacityMask></Rectangle>
+      </Grid>
+     <Grid x:Name="RightPupilSprite" RenderTransformOrigin="0.5,0.5">
+       <Grid.RenderTransform><TransformGroup><ScaleTransform x:Name="RightPupilBlinkScale"/><TranslateTransform x:Name="RightPupilOffset"/></TransformGroup></Grid.RenderTransform>
+       <Image x:Name="RightPupilOverlay" Stretch="Uniform" RenderOptions.BitmapScalingMode="LowQuality"/>
+       <Rectangle x:Name="RightPupilShade" Fill="Black" Opacity="0" IsHitTestVisible="False">
+        <Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=RightPupilOverlay}" Stretch="Uniform"/></Rectangle.OpacityMask>
+       </Rectangle>
+      </Grid>
+     </Canvas>
+     <Grid x:Name="LeftEyeForeground" Visibility="Collapsed">
+      <Image x:Name="LeftEyeForegroundImage" Stretch="Fill"/>
+      <Rectangle x:Name="LeftForegroundShade" Fill="Black" Opacity="0"><Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=LeftEyeForegroundImage}" Stretch="Fill"/></Rectangle.OpacityMask></Rectangle>
+     </Grid>
+     <Grid x:Name="LeftHalfEye" Visibility="Collapsed">
+      <Image x:Name="LeftHalfEyeImage" Stretch="Uniform"/>
+      <Rectangle x:Name="LeftHalfShade" Fill="Black" Opacity="0"><Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=LeftHalfEyeImage}" Stretch="Uniform"/></Rectangle.OpacityMask></Rectangle>
+     </Grid>
+     <Grid x:Name="LeftClosedEye" Visibility="Collapsed">
+      <Image x:Name="LeftClosedEyeImage" Stretch="Uniform" RenderOptions.BitmapScalingMode="LowQuality"/>
+      <Rectangle x:Name="LeftClosedEyeShade" Fill="Black" Opacity="0"><Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=LeftClosedEyeImage}" Stretch="Uniform"/></Rectangle.OpacityMask></Rectangle>
+     </Grid>
+     <Grid x:Name="RightEyeForeground" Visibility="Collapsed">
+      <Image x:Name="RightEyeForegroundImage" Stretch="Fill"/>
+      <Rectangle x:Name="RightForegroundShade" Fill="Black" Opacity="0"><Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=RightEyeForegroundImage}" Stretch="Fill"/></Rectangle.OpacityMask></Rectangle>
+     </Grid>
+     <Grid x:Name="RightHalfEye" Visibility="Collapsed">
+      <Image x:Name="RightHalfEyeImage" Stretch="Uniform"/>
+      <Rectangle x:Name="RightHalfShade" Fill="Black" Opacity="0"><Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=RightHalfEyeImage}" Stretch="Uniform"/></Rectangle.OpacityMask></Rectangle>
+     </Grid>
+     <Grid x:Name="RightClosedEye" Visibility="Collapsed">
+      <Image x:Name="RightClosedEyeImage" Stretch="Uniform" RenderOptions.BitmapScalingMode="LowQuality"/>
+      <Rectangle x:Name="RightClosedEyeShade" Fill="Black" Opacity="0"><Rectangle.OpacityMask><ImageBrush ImageSource="{Binding Source, ElementName=RightClosedEyeImage}" Stretch="Uniform"/></Rectangle.OpacityMask></Rectangle>
+     </Grid>
+    </Canvas>
+    <Canvas x:Name="ScreenEffectCanvas" Panel.ZIndex="20" IsHitTestVisible="False" Visibility="Collapsed">
+     <Rectangle x:Name="ScreenFlicker" Fill="Black" Opacity="0"/>
+     <Rectangle x:Name="ScreenReflection" RadiusX="18" RadiusY="18"/>
+     <Rectangle x:Name="ScreenGlow" Fill="Transparent" Stroke="#7AEFFFFF" StrokeThickness="12" RadiusX="18" RadiusY="18" Opacity="0"/>
+     <Rectangle x:Name="ScreenScanlines" Opacity="0"/>
+    </Canvas>
+    </Grid>
+    </Grid>
+    </Grid>
+    <Image x:Name="LightImage" Stretch="Uniform" IsHitTestVisible="False" Opacity="0" RenderOptions.BitmapScalingMode="LowQuality"/>
+    <Canvas x:Name="RegionEditor" Background="Transparent" Visibility="Collapsed"
+      MouseWheel="Region_Wheel" MouseLeftButtonDown="Region_Down" MouseMove="Region_Move" MouseLeftButtonUp="Region_Up">
+     <Ellipse x:Name="LeftRegionOutline" Stroke="#06E2EB" StrokeThickness="2" Fill="#1806E2EB" IsHitTestVisible="False"/>
+     <Ellipse x:Name="RightRegionOutline" Stroke="#FFC676" StrokeThickness="2" Fill="#18FFC676" IsHitTestVisible="False"/>
+     <Path x:Name="ScreenRegionOutline" Stretch="None" Stroke="#42E8FF" StrokeThickness="4" StrokeDashArray="6,3" Fill="#5536B9E8" IsHitTestVisible="False" Visibility="Collapsed"/>
+    </Canvas>
+   </Grid>
+  </Viewbox>
+  <StackPanel x:Name="ScreenEditorActions" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,12,0,0" Panel.ZIndex="100" Visibility="Collapsed">
+   <Button Content="Отмена" Click="ScreenEditorCancel_Click" Margin="0,0,8,0" Padding="18,7"/>
+   <Button Content="Применить" Click="ScreenEditorApply_Click" Padding="18,7"/>
+  </StackPanel>
+  <Border x:Name="PlaceholderBox" Background="#ED171C24" CornerRadius="14" Padding="24,18" HorizontalAlignment="Center" VerticalAlignment="Center">
+   <StackPanel><TextBlock Text="Добавьте своего персонажа" FontSize="18" FontWeight="SemiBold"/>
+    <TextBlock Text="Нажмите + в карточке изображения справа. Можно начать с одного PNG." TextWrapping="Wrap" MaxWidth="300" Margin="0,8,0,0" Foreground="#A7B5C8"/>
+   </StackPanel>
+  </Border>
+  <Canvas x:Name="LampEditor" Visibility="Collapsed">
+   <Ellipse x:Name="LampRadiusRing" Stroke="#CCFFCF62" StrokeThickness="3" Cursor="SizeAll"
+     ToolTip="Потяните границу, чтобы изменить радиус света"
+     MouseLeftButtonDown="RadiusDown" MouseMove="RadiusMove" MouseLeftButtonUp="RadiusUp"/>
+   <TextBlock x:Name="LampRadiusLabel" Foreground="#FFCF62" Background="#DD171C24" Padding="6,3" IsHitTestVisible="False"/>
+   <Border x:Name="LampHandle" Width="40" Height="40" Background="#FFCF62" CornerRadius="20" Cursor="Hand"
+     ToolTip="Перетащите лампу. Колесо мыши меняет радиус света." MouseLeftButtonDown="LampDown" MouseMove="LampMove" MouseLeftButtonUp="LampUp" MouseWheel="RadiusWheel">
+    <Path Data="M 12,2 A 7,7 0 0 1 17,14 L 16,18 L 8,18 L 7,14 A 7,7 0 0 1 12,2 M 8,21 L 16,21 M 10,24 L 14,24"
+      Stroke="#202530" StrokeThickness="2" Width="20" Height="28" Stretch="Uniform"/>
+   </Border>
+   <Button Canvas.Left="220" Canvas.Top="12" Content="Готово · вернуть анимацию" Click="LampDone" Padding="12,8"/>
+  </Canvas>
+ </Grid>
+</UserControl>
