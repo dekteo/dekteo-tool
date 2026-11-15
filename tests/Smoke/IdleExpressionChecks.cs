@@ -1,13 +1,13 @@
 using System.Reflection;
 using System.Text.Json;
 using System.Windows.Media;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class IdleExpressionChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();int checks=0;
+        var app=new Dekotube.App();app.InitializeComponent();int checks=0;
         void Check(bool value,string name){if(!value)throw new Exception(name);checks++;Console.WriteLine(name);}
         var o=new IdleExpressionOptions();var m=new IdleExpression(3);
         for(int i=0;i<5000;i++)m.Step(.016,o,false);

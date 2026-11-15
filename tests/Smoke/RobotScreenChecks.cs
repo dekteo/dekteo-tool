@@ -3,13 +3,13 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class RobotScreenChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();int count=0;
+        var app=new Dekotube.App();app.InitializeComponent();int count=0;
         void Check(bool ok,string name){if(!ok)throw new Exception(name);count++;Console.WriteLine(name);}
         var o=new RobotScreenOptions();var m=new RobotScreenMotion();
         void Step(int frames,bool talking=false,double level=0){for(int i=0;i<frames;i++)m.Step(.016,i*.016,o,talking,level);}

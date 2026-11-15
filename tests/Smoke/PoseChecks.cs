@@ -1,4 +1,4 @@
-using VeadotubeMy.Services;
+using Dekotube.Services;
 internal static class PoseChecks
 {
     public static void Run()

@@ -1,5 +1,5 @@
 using NAudio.Wave;
-using VeadotubeMy.Services;
+using Dekotube.Services;
 using System.Text.Json;
 
 internal static class VowelChecks
@@ -84,7 +84,7 @@ internal static class VowelChecks
         service.MouthOpenEyesOpen=service.MouthOpenEyesClosed=ordinary;
         service.MouthClosedEyesOpen=service.MouthClosedEyesClosed=ordinary;
         service.VowelImages[2]=vowelOpen; service.VowelImages[3]=vowelClosed; service.IsTalking=true;
-        var view=new VeadotubeMy.Views.AvatarView();
+        var view=new Dekotube.Views.AvatarView();
         var character=new AvatarEmotion { AdvancedMouth=true,UseVowels=true, EnabledVowels=[VowelShape.O] }; view.ConfigureCharacter(character);
         var type=view.GetType(); var update=type.GetMethod("UpdateScene",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance)!;
         type.GetProperty("CurrentVowel")!.SetValue(view,VowelShape.O);

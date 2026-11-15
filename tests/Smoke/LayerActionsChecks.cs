@@ -1,12 +1,12 @@
 using System.Windows;
 using System.Windows.Controls;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class LayerActionsChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();
+        var app=new Dekotube.App();app.InitializeComponent();
         var c=new AvatarEmotion();c.Head.Enabled=true;c.HiddenParts.Add("base");c.HiddenParts.Add("body");
         var scene=new AvatarView();scene.ConfigureCharacter(c);
         void Check(bool ok,string text){if(!ok)throw new Exception(text);Console.WriteLine(text);}

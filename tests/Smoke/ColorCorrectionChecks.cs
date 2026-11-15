@@ -2,14 +2,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 
 internal static class ColorCorrectionChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();
+        var app=new Dekotube.App();app.InitializeComponent();
         byte[] Render(ColorCorrectionOptions? options)
         {
             var effect=new ColorCorrectionEffect(); if(options!=null)effect.Apply(options);

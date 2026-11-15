@@ -3,13 +3,13 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class AccessoryChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();int count=0;
+        var app=new Dekotube.App();app.InitializeComponent();int count=0;
         void Check(bool ok,string text){if(!ok)throw new Exception(text);count++;Console.WriteLine(text);}
         var o=new AccessoryOptions {Motion=false};var swing=new AccessorySwing();swing.Kick(30);double max=0;
         for(int i=0;i<2400;i++){swing.Step(1.0/120,o);max=Math.Max(max,Math.Abs(swing.Angle));}

@@ -16,5 +16,5 @@ public static class ShaderCompiler {
  }
 }
 '@
-$shaderDirectory=Join-Path $PSScriptRoot '../VeadotubeMy/VeadotubeMy/Shaders'
+$shaderDirectory=Join-Path $PSScriptRoot '../Dekotube/Dekotube/Shaders'
 [ShaderCompiler]::Compile((Join-Path $shaderDirectory 'ColorCorrection.hlsl'),(Join-Path $shaderDirectory 'ColorCorrection.ps'))

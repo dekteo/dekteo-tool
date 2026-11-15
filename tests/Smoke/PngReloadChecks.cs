@@ -3,14 +3,14 @@ using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 
 internal static class PngReloadChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();
+        var app=new Dekotube.App();app.InitializeComponent();
         string dir=Path.Combine(AppContext.BaseDirectory,"png-reload-fixture");Directory.CreateDirectory(dir);
         string path=Path.Combine(dir,"same-name.png");
         void Write(byte red,byte blue,int size=32){var bytes=new byte[size*size*4];for(int i=0;i<bytes.Length;i+=4){bytes[i]=blue;bytes[i+2]=red;bytes[i+3]=255;}var image=BitmapSource.Create(size,size,96,96,PixelFormats.Bgra32,null,bytes,size*4);var png=new PngBitmapEncoder();png.Frames.Add(BitmapFrame.Create(image));using var f=File.Create(path);png.Save(f);}

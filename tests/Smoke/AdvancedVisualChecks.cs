@@ -2,13 +2,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class AdvancedVisualChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();int checks=0;
+        var app=new Dekotube.App();app.InitializeComponent();int checks=0;
         void Check(bool ok,string text){if(!ok)throw new Exception(text);checks++;Console.WriteLine(text);}
         var average=ScreenLightCapture.Average(new byte[]{0,0,200,255,200,0,0,255},2,1);
         Check(average.Left.R==200&&average.Left.B==0&&average.Right.B==200,"Left/right screen averages independent");

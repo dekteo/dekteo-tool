@@ -1,4 +1,4 @@
-using VeadotubeMy.Services;
+using Dekotube.Services;
 using NAudio.Wave;
 internal static class RoundedVowelChecks
 {

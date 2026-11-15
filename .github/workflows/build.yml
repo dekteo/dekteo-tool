@@ -14,11 +14,11 @@ jobs:
         with:
           dotnet-version: '10.0.x'
       - run: dotnet restore tests/Smoke
-      - run: dotnet build VeadotubeMy/VeadotubeMy --no-restore
+      - run: dotnet build Dekotube/Dekotube --no-restore
       - run: dotnet run --project tests/Smoke --no-restore
       - run: dotnet run --project tests/Smoke --no-restore -- --render-probe
-      - run: dotnet publish VeadotubeMy/VeadotubeMy -c Release --no-restore --no-self-contained -o artifacts/release/app
+      - run: dotnet publish Dekotube/Dekotube -c Release --no-restore --no-self-contained -o artifacts/release/app
       - uses: actions/upload-artifact@v4
         with:
-          name: Dekteo-Tool-windows
+          name: Dekotube-windows
           path: artifacts/release/app/

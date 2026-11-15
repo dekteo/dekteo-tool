@@ -9,7 +9,7 @@
 !/docs/
 !/scripts/
 !/tests/
-!/VeadotubeMy/
+!/Dekotube/
 
 **/bin/
 **/obj/
@@ -19,6 +19,7 @@
 *.suo
 *.log
 *.tmp
+*_wpftmp.csproj
 .env*
 *.pfx
 *.pem

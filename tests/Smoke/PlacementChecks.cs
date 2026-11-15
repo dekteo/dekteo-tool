@@ -2,8 +2,8 @@ using System.Reflection;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Media;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 
 internal static class PlacementChecks
 {

@@ -5,13 +5,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class HandsChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();int n=0;void Check(bool value,string text){if(!value)throw new Exception(text);n++;Console.WriteLine(text);}
+        var app=new Dekotube.App();app.InitializeComponent();int n=0;void Check(bool value,string text){if(!value)throw new Exception(text);n++;Console.WriteLine(text);}
         var motion=new HandsMotion();motion.Step(.016,new(1,0,-1,0,1,0,true));Check(motion.LX>0&&motion.LX<1&&motion.RX<0,"Input smooths both sticks independently");
         for(int i=0;i<120;i++)motion.Step(.016,default);Check(Math.Abs(motion.LX)<1e-8&&motion.LeftPress<1e-8,"Disconnect settles to neutral");
         Check(HandsInputReader.Axis(1000)==0&&HandsInputReader.Axis(short.MinValue)==-1,"Stick deadzone and range");

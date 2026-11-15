@@ -2,7 +2,7 @@ using System.IO;
 using System.Reflection;
 using System.Text.Json;
 using System.Windows.Threading;
-using VeadotubeMy.Services;
+using Dekotube.Services;
 
 internal static class Program
 {
@@ -47,7 +47,7 @@ internal static class Program
         if (!args.Contains("--render-probe") && !args.Contains("--audio-probe")) { VowelChecks.Run(Assert); VowelChecks.CheckRendering(Assert); SeparateEyeChecks.Run(Assert); HeadChecks.Run(Assert); NaturalMotionChecks.Run(Assert); LivingChecks.Run(Assert); }
         if (args.Contains("--render-probe"))
         {
-            var view = new VeadotubeMy.Views.AvatarView();
+            var view = new Dekotube.Views.AvatarView();
             var characterForProbe = new AvatarEmotion();
             characterForProbe.Pupils.Enabled = true;
             characterForProbe.Effects.Add(new CharacterEffect { Kind = "wave", When = "always" });
@@ -115,7 +115,7 @@ internal static class Program
         var extendedCopy = extended.Duplicate();
         extendedCopy.Pupils.Left.RotationDegrees = -20;
         Assert(extendedReload.AdvancedMouth && extendedReload.GetPaths()[4] == "wide.png" && extendedReload.WideMouthThreshold == 72 && extendedReload.Pupils.Left.RotationDegrees == 37 && extended.Pupils.Left.RotationDegrees == 37, "Extended mode and rotation persist and copy independently");
-        var rotatedView = new VeadotubeMy.Views.AvatarView();
+        var rotatedView = new Dekotube.Views.AvatarView();
         rotatedView.ConfigureCharacter(extended); rotatedView.EditEyeRegion(0);
         var rotatedClip = (System.Windows.Controls.Canvas)rotatedView.FindName("LeftEyeClip");
         Assert(rotatedClip.RenderTransform is System.Windows.Media.RotateTransform rt && rt.Angle == 37, "Eye clipping region rotates with its pupil");
@@ -130,14 +130,14 @@ internal static class Program
         var previewEffect = new CharacterEffect { Kind="darken", Enabled=false, Amount=.5, When="idle" };
         previewCharacter.Effects.Add(previewEffect);
         previewCharacter.Effects.Add(new CharacterEffect { Kind="darken", Enabled=true, Amount=.8, When="always" });
-        var previewScene = new VeadotubeMy.Views.AvatarView(); previewScene.ConfigureCharacter(previewCharacter);
+        var previewScene = new Dekotube.Views.AvatarView(); previewScene.ConfigureCharacter(previewCharacter);
         previewScene.PreviewEffect(previewEffect);
         var shade = (System.Windows.Shapes.Rectangle)previewScene.FindName("DarkenOverlay");
         Assert(Math.Abs(shade.Opacity-.4)<.0001 && !previewEffect.Enabled, "Effect preview isolates selected disabled effect without changing settings");
         previewScene.CancelEffectPreview();
         Assert(Math.Abs(shade.Opacity-.64)<.0001, "Cancelling effect preview restores normal effects");
         var emptyEffects = new AvatarEmotion();
-        _ = new VeadotubeMy.Views.EffectsView(emptyEffects, previewScene, () => {});
+        _ = new Dekotube.Views.EffectsView(emptyEffects, previewScene, () => {});
         Assert(emptyEffects.Effects.Count == 0, "Opening effects editor does not create effects");
         var resized = EyeRegionGeometry.Resize(region, new System.Windows.Point(.9, .8), 4);
         Assert(resized.TopLeft == region.TopLeft && (resized.BottomRight - new System.Windows.Point(.9, .8)).Length < .000001, "Corner resize keeps opposite corner fixed");

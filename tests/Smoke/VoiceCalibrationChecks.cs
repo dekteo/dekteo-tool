@@ -1,6 +1,6 @@
 using NAudio.Wave;
 using System.Text.Json;
-using VeadotubeMy.Services;
+using Dekotube.Services;
 
 internal static class VoiceCalibrationChecks
 {

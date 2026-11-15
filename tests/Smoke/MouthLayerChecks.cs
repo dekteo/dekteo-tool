@@ -4,8 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 
 internal static class MouthLayerChecks
 {
@@ -129,7 +129,7 @@ internal static class MouthLayerChecks
         var settings = JsonSerializer.Deserialize<AvatarEmotion>(JsonSerializer.Serialize(c))!.MouthLayer;
         check(settings.Liveliness == .8 && c.Duplicate().MouthLayer.VowelInfluence == .35,
             "Living mouth settings persist and duplicate");
-        var stripType = typeof(AvatarView).Assembly.GetType("VeadotubeMy.Views.ProceduralMouthStrip")!;
+        var stripType = typeof(AvatarView).Assembly.GetType("Dekotube.Views.ProceduralMouthStrip")!;
         var strip = (FrameworkElement)Activator.CreateInstance(stripType)!;
         strip.Measure(new Size(240,40)); strip.Arrange(new Rect(0,0,240,40)); strip.UpdateLayout();
         stripType.GetMethod("Configure")!.Invoke(strip, new object[]{Colors.Cyan,.4});

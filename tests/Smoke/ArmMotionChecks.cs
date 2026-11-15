@@ -5,13 +5,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class ArmMotionChecks
 {
     public static void Run(Action<bool,string> check)
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();
+        var app=new Dekotube.App();app.InitializeComponent();
         var map=new ArmMotionMap();var part=map.Parts[0];
         part.Shoulder=new(.3,.2);part.Elbow=new(.3,.45);part.Wrist=new(.6,.8);part.Feather=0;
         part.Area.WholeLayer=true;

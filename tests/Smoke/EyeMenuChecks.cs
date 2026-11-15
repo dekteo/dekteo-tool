@@ -4,21 +4,21 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 
 internal static class EyeMenuChecks
 {
     public static void RenderLayers()
     {
-        var app=new VeadotubeMy.App(); app.InitializeComponent();
-        var window=new VeadotubeMy.MainWindow();
+        var app=new Dekotube.App(); app.InitializeComponent();
+        var window=new Dekotube.MainWindow();
         var character=new AvatarEmotion { Name="Проверка" };
         character.MouthLayer.Enabled=true;character.MouthLayer.Procedural=true;character.MouthLayer.ProceduralVowels=true;
         character.Pupils.Enabled=true;character.Head.Enabled=true;
         var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
-        typeof(VeadotubeMy.MainWindow).GetField("_selectedEmotion",flags)!.SetValue(window,character);
-        var build=typeof(VeadotubeMy.MainWindow).GetMethod("BuildStateSlots",flags)!;
+        typeof(Dekotube.MainWindow).GetField("_selectedEmotion",flags)!.SetValue(window,character);
+        var build=typeof(Dekotube.MainWindow).GetMethod("BuildStateSlots",flags)!;
         var rail=(Border)window.FindName("RightPanelBorder");
         ((Panel)rail.Parent).Children.Remove(rail);
         var root=new Border { Background=Brushes.DarkSlateGray,Child=rail,Width=320,Height=780 };
@@ -50,7 +50,7 @@ internal static class EyeMenuChecks
     }
     public static void RenderMouth()
     {
-        var app=new VeadotubeMy.App(); app.InitializeComponent();
+        var app=new Dekotube.App(); app.InitializeComponent();
         var character=new AvatarEmotion(); character.MouthLayer.Procedural=true; character.MouthLayer.Enabled=true;
         var scene=new AvatarView(); scene.ConfigureCharacter(character);
         var view=new MouthLayerView(character,scene,()=>{});
@@ -87,7 +87,7 @@ internal static class EyeMenuChecks
         ((ComboBox)editor.Children[1]).SelectedIndex=0;
         check(details.Visibility==Visibility.Collapsed,"PNG mode hides separate layer settings");
         ((ComboBox)editor.Children[1]).SelectedIndex=1;
-        var app=new VeadotubeMy.App();
+        var app=new Dekotube.App();
         app.InitializeComponent();
         var root=new Border { Background=new SolidColorBrush(Color.FromRgb(20,23,28)),Child=view,Width=580,Height=720 };
         root.Measure(new Size(580,720));root.Arrange(new Rect(0,0,580,720));root.UpdateLayout();

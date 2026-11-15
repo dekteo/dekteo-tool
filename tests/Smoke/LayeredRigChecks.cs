@@ -4,14 +4,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 
 internal static class LayeredRigChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();
+        var app=new Dekotube.App();app.InitializeComponent();
         string root=Path.GetFullPath("artifacts/layered-rig-v1"),pack=Path.Combine(root,"HandsSample");
         void Check(bool value,string name){if(!value)throw new Exception(name);Console.WriteLine("PASS: "+name);}
         var flags=BindingFlags.NonPublic|BindingFlags.Instance;

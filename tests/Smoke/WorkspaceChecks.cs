@@ -4,8 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class WorkspaceChecks
 {
     public static void Run(Action<bool,string> check)
@@ -16,11 +16,11 @@ internal static class WorkspaceChecks
         check(jump<.02,$"Bent elbow field is continuous (max neighbouring change {jump:F4})");
         check(HandsInputReader.CursorAxis(1440,0,1920)==.5&&HandsInputReader.CursorAxis(-960,-1920,3840)==-.5,"Mouse position mapping supports negative desktop coordinates");
         check(!HandsAutoSwitch.Active(new(0,0,.8,.6,0,0,true,PointerMoved:false))&&HandsAutoSwitch.Active(new(0,0,.8,.6,0,0,true,PointerMoved:true)),"Held mouse position does not count as fresh input for pose switching");
-        var app=new VeadotubeMy.App();app.InitializeComponent();
+        var app=new Dekotube.App();app.InitializeComponent();
         var c=new AvatarEmotion{Name="CRT · проверка интерфейса"};c.Head.Enabled=true;c.MouthLayer.Enabled=true;c.Pupils.Enabled=true;
         string pack=Path.GetFullPath("artifacts/motion-editor-v1/app/HandsSample");
         c.Head.BodyImagePath=Path.Combine(pack,"01-body.png");c.MouthLayer.BasePath=Path.Combine(pack,"02-head.png");
-        var window=new VeadotubeMy.MainWindow(c);
+        var window=new Dekotube.MainWindow(c);
         var root=(Grid)window.Content;window.Content=null;
         root.Measure(new Size(1280,850));root.Arrange(new Rect(0,0,1280,850));root.UpdateLayout();
         var rail=(Border)window.FindName("RightPanelBorder");var inspector=(Border)window.FindName("OverlayHost");
@@ -32,10 +32,10 @@ internal static class WorkspaceChecks
         check(rail.HorizontalAlignment==HorizontalAlignment.Left&&inspector.HorizontalAlignment==HorizontalAlignment.Right&&inspector.Visibility==Visibility.Visible,"Layer tree is on left and selected layer properties on right");
         check(((TextBlock)window.FindName("OverlayTitle")).Text=="Глаза","Eye selection opens its own image and property panel");
         var scene=(AvatarView)window.FindName("AvatarView");var artwork=(Grid)scene.FindName("Artwork");double width=artwork.ActualWidth,height=artwork.ActualHeight;
-        var flags=BindingFlags.NonPublic|BindingFlags.Instance;typeof(VeadotubeMy.MainWindow).GetMethod("HideOverlay",flags)!.Invoke(window,null);root.UpdateLayout();
+        var flags=BindingFlags.NonPublic|BindingFlags.Instance;typeof(Dekotube.MainWindow).GetMethod("HideOverlay",flags)!.Invoke(window,null);root.UpdateLayout();
         check(artwork.ActualWidth==width&&artwork.ActualHeight==height,"Closing inspector preserves avatar geometry");
         eye.IsSelected=true;
-        typeof(VeadotubeMy.MainWindow).GetMethod("HideOverlay",flags)!.Invoke(window,null);
+        typeof(Dekotube.MainWindow).GetMethod("HideOverlay",flags)!.Invoke(window,null);
         eye.RaiseEvent(new System.Windows.Input.MouseButtonEventArgs(System.Windows.Input.Mouse.PrimaryDevice,0,System.Windows.Input.MouseButton.Left){RoutedEvent=UIElement.PreviewMouseLeftButtonUpEvent});root.UpdateLayout();
         check(inspector.Visibility==Visibility.Visible,"Clicking the selected layer reopens its closed inspector");
         var basis=layers.Items.OfType<TreeViewItem>().First(n=>((TextBlock)n.Header).Text=="Основа персонажа"); eye.IsSelected=true;root.UpdateLayout();

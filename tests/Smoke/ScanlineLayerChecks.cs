@@ -4,13 +4,13 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class ScanlineLayerChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();
+        var app=new Dekotube.App();app.InitializeComponent();
         var c=new AvatarEmotion();c.ScreenEffect.Scanlines=true;c.ScreenEffect.ScanlineOpacity=.5;
         var scene=new AvatarView();scene.ConfigureCharacter(c);
         var flags=BindingFlags.Instance|BindingFlags.NonPublic;

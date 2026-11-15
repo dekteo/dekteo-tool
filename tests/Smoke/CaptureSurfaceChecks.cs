@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 using System.Windows.Media;
-using VeadotubeMy.Services;
+using Dekotube.Services;
 internal static class CaptureSurfaceChecks
 {
     [StructLayout(LayoutKind.Sequential)]private struct Info{public uint Size;public int Width,Height;public ushort Planes,Bits;public uint Compression,ImageSize;public int XPels,YPels;public uint Used,Important;}

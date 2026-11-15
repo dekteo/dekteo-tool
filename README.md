@@ -1,8 +1,10 @@
-# Dekteo Tool
+# Dekotube
 
 Приложение PNGTuber для Windows: персонаж из PNG реагирует на голос, моргает и следует взглядом за курсором. Интерфейс на русском языке.
 
-Проект активно разрабатывается. Отдельного режима 3D с камерой пока нет.
+Личный экспериментальный проект, вдохновлённый veadotube mini. Dekotube — самостоятельное приложение, не связанное с разработчиками veadotube.
+
+Регулярная разработка не планируется: проект может надолго остаться без обновлений. Интерфейс довольно сложный и требует упрощения. Присутствует много багов, незавершённых функций и других недоработок. Отдельного режима 3D с камерой пока нет.
 
 ## Возможности
 
@@ -13,11 +15,13 @@
 - Экспериментальные позы рук для клавиатуры/мыши и геймпада.
 - Фон для захвата в OBS и скрытие интерфейса клавишей F8.
 
+**OBS:** при использовании источника «Захват окна» сворачивание приложения приводит к исчезновению персонажа в OBS. Во время трансляции оставляйте окно развёрнутым; панели можно скрыть клавишей F8.
+
 Изображения персонажей не входят в репозиторий. Используйте собственные PNG с прозрачностью. Для связанных слоёв сохраняйте одинаковый размер холста. Подготовка изображений: [docs/PREPARING_PNG.md](docs/PREPARING_PNG.md).
 
 ## Запуск готовой сборки
 
-Распакуйте весь ZIP в отдельную папку и запустите `VeadotubeMy.exe`. Для сборки без встроенного runtime требуется .NET Desktop Runtime 10 для Windows. Перед сменой версии сохраните настройки и закройте старое окно.
+Распакуйте весь ZIP в отдельную папку и запустите `Dekotube.exe`. Для сборки без встроенного runtime требуется .NET Desktop Runtime 10 для Windows. Перед сменой версии сохраните настройки и закройте старое окно.
 
 Профили сохраняются локально в AppData. Репозиторий и архив приложения не включают ваши профили, изображения, переписку или записи микрофона.
 
@@ -26,9 +30,9 @@
 Нужны Windows и .NET SDK 10. Команды выполняются из корня репозитория:
 
 ```powershell
-dotnet restore VeadotubeMy/VeadotubeMy
-dotnet build VeadotubeMy/VeadotubeMy --no-restore
-dotnet run --project VeadotubeMy/VeadotubeMy --no-build
+dotnet restore Dekotube/Dekotube
+dotnet build Dekotube/Dekotube --no-restore
+dotnet run --project Dekotube/Dekotube --no-build
 ```
 
 Подготовленные шейдеры `.ps` включены в исходники вместе с `.hlsl`; для обычной сборки отдельная компиляция шейдеров не нужна.
@@ -47,8 +51,8 @@ dotnet run --project tests/Smoke --no-restore -- --placement-probe
 ## Архив приложения
 
 ```powershell
-dotnet publish VeadotubeMy/VeadotubeMy -c Release --no-self-contained -o artifacts/release/app
-Compress-Archive -Path artifacts/release/app/* -DestinationPath artifacts/release/Dekteo-Tool-windows.zip
+dotnet publish Dekotube/Dekotube -c Release --no-self-contained -o artifacts/release/app
+Compress-Archive -Path artifacts/release/app/* -DestinationPath artifacts/release/Dekotube-windows.zip
 ```
 
 ## Состояние разработки

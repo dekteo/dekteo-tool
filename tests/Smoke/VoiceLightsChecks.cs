@@ -5,13 +5,13 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class VoiceLightsChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();int n=0;
+        var app=new Dekotube.App();app.InitializeComponent();int n=0;
         void Check(bool ok,string text){if(!ok)throw new Exception(text);n++;Console.WriteLine(text);}
         var o=new VoiceLightsOptions();var m=new VoiceLightsMotion();
         void Step(bool talking,double level,int frames=120){for(int i=0;i<frames;i++)m.Step(.016,o,talking,level);}

@@ -2,13 +2,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using VeadotubeMy.Services;
-using VeadotubeMy.Views;
+using Dekotube.Services;
+using Dekotube.Views;
 internal static class EffectsMenuChecks
 {
     public static void Run()
     {
-        var app=new VeadotubeMy.App();app.InitializeComponent();
+        var app=new Dekotube.App();app.InitializeComponent();
         var c=new AvatarEmotion{AddedEffectCards=["mimic","head","screenLight","color"]};
         c.ScreenEffect.Added=true;c.Lighting.Added=true;c.Effects.Add(new CharacterEffect{Kind="wave"});
         var scene=new AvatarView();scene.ConfigureCharacter(c);int saves=0;

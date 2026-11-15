@@ -1,7 +1,7 @@
-# Dekteo Tool: context for the next developer
+# Dekotube: context for the next developer
 
 Read PROJECT_STATUS.md and docs/TEST_CHECKLIST.md before changing the application.
-The older “Dekteo Tool — состояние проекта.md” is a historical report and contains outdated claims.
+The older “Dekotube — состояние проекта.md” is a historical report and contains outdated claims.
 
 User intent:
 - A Windows PNGTuber similar to veadotube mini: four PNG states, microphone-driven mouth, blinking, per-character effects.
@@ -21,7 +21,7 @@ Implementation guardrails:
 - Update PROJECT_STATUS.md and docs/TEST_CHECKLIST.md after meaningful changes, distinguishing source checks, automated tests and actual user/device verification.
 - Do not mark microphone voice reaction, OBS capture or visual smoothness verified merely because the build passes.
 
-Build: dotnet build VeadotubeMy/VeadotubeMy --no-restore
+Build: dotnet build Dekotube/Dekotube --no-restore
 Tests: dotnet run --project tests/Smoke --no-restore
 Performance regression probe: dotnet run --project tests/Smoke --no-restore -- --render-probe
 Optional real microphone probe: dotnet run --project tests/Smoke --no-restore -- --audio-probe
